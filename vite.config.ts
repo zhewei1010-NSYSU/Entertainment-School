@@ -22,7 +22,7 @@ export default defineConfig({
         id: './', name: '校園漫遊｜台灣國小探索地圖', short_name: '校園漫遊',
         description: '探索台灣國小，記錄自己的照片與走訪心得。',
         lang: 'zh-Hant', start_url: './', scope: './', display: 'standalone',
-        theme_color: '#2b513e', background_color: '#f8f8f2',
+        theme_color: '#873e32', background_color: '#faf9f6',
         icons: [
           { src: 'pwa-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
           { src: 'pwa-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },

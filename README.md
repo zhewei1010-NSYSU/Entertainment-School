@@ -84,3 +84,7 @@ PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:pwa
 名錄沒有學校經緯度，所以這是行政區定位，不代表學校精確位置；精確導航請使用「地圖導航」。返回清單會還原原先地圖視角及篩選；從全台搜尋進入學校，再返回時仍保留搜尋條件。
 
 使用正式預覽伺服器時，可執行 `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:map-selection`，驗證選取、聚焦、照片保存後預覽、320px 版面與返回視角。
+
+## 介面風格
+
+走訪簿採紙白、墨色與少量磚紅；地圖使用灰褐底色，選取行政區使用磚紅。學校與行政區清單以細線分隔，保留照片原色，減少裝飾英文與卡片背景。樣式集中在 `app/field-notes.css`，不改動既有資料格式、匯入匯出或離線儲存方式。
