@@ -1,0 +1,36 @@
+import assert from 'node:assert/strict';
+import { chromium, expect } from '@playwright/test';
+const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || '/usr/bin/chromium' });
+try {
+ const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, reducedMotion: 'reduce' });
+ await page.goto(process.env.PWA_TEST_URL || 'http://127.0.0.1:4185/Entertainment-School/');
+ await page.locator('.explore-selects select').first().selectOption('臺南市');
+ await page.locator('.district-grid button').filter({ hasText: '官田區' }).click();
+ const map = page.locator('.district-svg');
+ await expect(map).toBeVisible();
+ const original = await map.getAttribute('viewBox');
+ await page.locator('.school-row').filter({ hasText: '隆田國小' }).click();
+ await expect(page.locator('.map-school-focus')).toContainText('隆田國小');
+ await expect(page.locator('[data-district="官田區"]')).toHaveAttribute('aria-pressed', 'true');
+ await expect.poll(() => map.getAttribute('viewBox')).not.toBe(original);
+ await page.getByRole('button', { name: '加入校園照片', exact: true }).click();
+ await page.getByLabel('沿途的感受').fill('左右連動照片測試');
+ await page.locator('dialog input[type=file]').setInputFiles(new URL('../public/pwa-192.png', import.meta.url).pathname);
+ await page.getByRole('button', { name: '儲存這一站' }).click();
+ await expect(page.locator('.map-school-photo')).toBeVisible();
+ assert.ok(await page.locator('.map-school-photo').evaluate(img => img.complete && img.naturalWidth > 0));
+ await page.setViewportSize({ width: 320, height: 844 });
+ assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+ await page.getByRole('button', { name: '回到臺南市清單' }).click();
+ await expect(page.locator('.map-school-focus')).toHaveCount(0);
+ await expect(map).toHaveAttribute('viewBox', original);
+ await page.getByRole('button', { name: '台灣地圖', exact: true }).click();
+ await page.getByLabel('搜尋國小、地區或地址').fill('隆田國小');
+ await page.locator('.school-row').first().click();
+ await expect(page.getByRole('region', { name: '臺南市行政區互動地圖', exact: true })).toBeVisible();
+ await expect(page.locator('.map-school-focus')).toContainText('隆田國小');
+ await page.getByRole('button', { name: '回到學校清單' }).click();
+ await expect(page.locator('.taiwan-map')).toBeVisible();
+ assert.equal(await page.getByLabel('搜尋國小、地區或地址').inputValue(), '隆田國小');
+ console.log('PASS: school selection focuses district, photo preview updates after saving, 320px layout, previous zoom restoration, national-search county linkage and original filters preserved.');
+} finally { await browser.close(); }

@@ -13,7 +13,8 @@
     "publish:root": "npm run build && node scripts/publish-root.mjs",
     "preview": "vite preview",
     "test:pwa": "node tests/pwa.mjs",
-    "icons": "node scripts/generate-icons.mjs"
+    "icons": "node scripts/generate-icons.mjs",
+    "test:map-selection": "node tests/map-selection.mjs"
   },
   "dependencies": {
     "lucide-react": "1.31.0",
