@@ -3,17 +3,17 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { MapPin, Search, ArrowLeft, ArrowRight, ArrowUpRight, School, Compass, Check, Heart, Camera, Plus, BookOpen, ExternalLink, Leaf, LoaderCircle, ChevronDown, Phone } from 'lucide-react';
 import { useMapGestures } from './use-map-gestures';
 import { assetPath } from './asset-path';
-import { photoUrl } from './local-store';
+import { photoUrl as defaultPhotoUrl } from './local-store';
 import CountyMap from "./county-map";
 import mapRegions from '../data/taiwan-map.json';
 import type { Visit } from './journal';
 export type SchoolData={id:string;name:string;city:string;district:string;address:string;phone:string;website:string;kind:string};
 type Attraction={id:string;name:string;city:string;district:string;address:string;description:string;source:string;updated:string;url:string};
 const regionGroups=[['北部','臺北市','新北市','基隆市','桃園市','新竹市','新竹縣'],['中部','苗栗縣','臺中市','彰化縣','南投縣','雲林縣'],['南部','嘉義市','嘉義縣','臺南市','高雄市','屏東縣'],['東部','宜蘭縣','花蓮縣','臺東縣'],['離島','澎湖縣','金門縣','連江縣']];
-const imageUrl=photoUrl;
 const maps=(query:string)=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(query);
 function isSchoolRecord(r:Visit,s:SchoolData){return r.schoolId===s.id||(!r.schoolId&&r.city===s.city&&r.district===s.district&&r.name===s.name)}
-export default function Explore({records,onRecord,onView}:{records:Visit[];onRecord:(s:SchoolData)=>void;onView:(v:Visit)=>void}){
+export default function Explore({records,onRecord,onView,getPhotoUrl=defaultPhotoUrl}:{getPhotoUrl?:(id:string)=>string;records:Visit[];onRecord:(s:SchoolData)=>void;onView:(v:Visit)=>void}){
+ const photoUrl=getPhotoUrl, imageUrl=getPhotoUrl;
  const browserRef=useRef<HTMLElement>(null);
  const layoutRef=useRef<HTMLDivElement>(null);
  const jumpToMap=()=>requestAnimationFrame(()=>layoutRef.current?.scrollIntoView({block:"start",behavior:window.matchMedia("(prefers-reduced-motion:reduce)").matches?"instant":"smooth"}));

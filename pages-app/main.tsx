@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import Journal from '../app/journal';
+import CloudWorkspace from '../app/cloud-workspace';
 import PwaStatus from '../app/pwa-status';
 import '../app/globals.css';
-createRoot(document.getElementById('root')!).render(<><Journal/><PwaStatus/></>);
+createRoot(document.getElementById('root')!).render(<><CloudWorkspace/><PwaStatus/></>);

@@ -38,7 +38,7 @@ try {
   await page.getByText('已儲存在這台裝置', { exact: true }).waitFor();
   await page.reload();
   const stored = await page.evaluate(() => new Promise((resolve, reject) => {
-    const request = indexedDB.open('school-wander-local-v1', 1);
+    const request = indexedDB.open('school-wander-local-v1');
     request.onerror = () => reject(request.error);
     request.onsuccess = () => {
       const db = request.result;

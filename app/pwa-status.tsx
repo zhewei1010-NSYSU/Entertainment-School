@@ -29,7 +29,7 @@ export default function PwaStatus() {
   }, []);
   if (online && !waiting && !failed) return null;
   return <aside className="pwa-status" aria-label="App 連線與更新狀態">
-    {!online && <p role="status">目前離線{ready ? '，離線介面已準備好' : ''}。照片與心得只保存在此裝置，不會上傳或跨裝置同步；外部地圖與學校網站需要網路。</p>}
+    {!online && <p role="status">目前離線{ready ? '，離線介面已準備好' : ''}。離線新增的照片與心得先保存在此裝置，尚未同步雲端；登入並恢復連線後可重試同步。外部地圖與學校網站需要網路。</p>}
     {failed && <p role="status">離線介面尚未準備好，請連線後重新開啟；已保存的紀錄不受影響。</p>}
     {waiting && <p role="status">有新版本可用。<button onClick={() => {
       if (window.confirm('請先儲存正在填寫的心得。更新會重新載入頁面，尚未儲存的表單會遺失；已保存的照片與紀錄會保留。確定更新？')) void update?.(true);
