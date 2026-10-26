@@ -10,23 +10,29 @@
     "build": "vite build",
     "check": "tsc --noEmit",
     "test": "node --experimental-strip-types tests/core.mjs",
-    "publish:root": "npm run build && node scripts/publish-root.mjs"
+    "publish:root": "npm run build && node scripts/publish-root.mjs",
+    "preview": "vite preview",
+    "test:pwa": "node tests/pwa.mjs",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
+    "lucide-react": "1.31.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "lucide-react": "1.31.0",
     "zod": "3.25.76"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
-    "vite": "8.0.13",
-    "typescript": "5.9.3",
+    "fake-indexeddb": "6.2.4",
+    "sharp": "^0.35.5",
     "tailwindcss": "4.2.1",
-    "@tailwindcss/postcss": "4.2.1",
-    "fake-indexeddb": "6.2.4"
+    "typescript": "5.9.3",
+    "vite": "8.0.13",
+    "vite-plugin-pwa": "^2.0.0"
   }
 }
