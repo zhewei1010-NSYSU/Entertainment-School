@@ -15,3 +15,15 @@ body { padding-top: env(safe-area-inset-top, 0px); padding-left: env(safe-area-i
 
 .map-school-focus{display:flex;align-items:center;gap:10px;margin:12px 0;padding:14px;border:1px solid #c1bfbb;border-radius:12px;background:#fffdf5;color:#413f3b}.map-school-focus>svg{flex-shrink:0}.map-school-focus>div{flex:1;min-width:0}.map-school-focus strong{display:block;font-size:17px;overflow-wrap:anywhere}.map-school-focus span{display:block;font-size:12px;margin-top:4px;line-height:1.6}.map-school-focus button{flex-shrink:0;min-height:44px;padding:8px 12px;border-radius:8px;background:#413f3b;color:white}@media(max-width:480px){.map-school-focus{flex-wrap:wrap}.map-school-focus>div{flex-basis:calc(100% - 34px)}.map-school-focus button{margin-left:30px}}
 .map-school-photo{display:block;width:100px;height:100px;object-fit:cover;border-radius:10px}.map-school-focus .map-add-photo{margin:8px 0 0;min-height:44px;background:#e7e5e1;color:#413f3b;font-size:13px}@media(max-width:480px){.map-school-photo{width:80px;height:80px}.map-school-focus>a{flex-shrink:0}.map-school-focus>a+div{flex-basis:calc(100% - 100px)}}
+
+/* Color-only theme; original green-version geometry and controls are preserved. */
+:root { --green:#873e32; --ink:#282724; --muted:#706b63; --cream:#faf9f6; --line:#d5d0c7; }
+.primary,.map-only .primary,.pwa-status button,.map-school-focus button { background:#873e32;color:#fffefa; }
+.primary:hover { background:#6c3028; }
+.county-path.active,.district-region.selected .district-shape { fill:#a35b48;stroke:#67392f; }
+.county-path.has-visited { fill:#bf9a83; }
+.county-path:hover,.county-path.hover,.district-shape.hovered,.district-region:focus-visible .district-shape { fill:#c6a38f;stroke:#873e32; }
+.map-only .map-region-label.active rect,.district-region.selected .district-name rect { fill:#873e32; }
+.map-only .map-region-label.active text,.district-region.selected .district-name text { fill:#ffffff; }
+.legend-selected { background:#873e32; }.legend-done { background:#bf9a83; }
+.map-only .explore-intro h1 span,.map-only .school-external a,.map-only .back-link { color:#873e32; }
