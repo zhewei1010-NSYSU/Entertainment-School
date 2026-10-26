@@ -9,6 +9,7 @@ try {
  const map = page.locator('.district-svg');
  await expect(map).toBeVisible();
  const original = await map.getAttribute('viewBox');
+ await expect(page.locator('.school-row').filter({ hasText: '隆田國小' }).locator('.school-card-placeholder')).toBeVisible();
  await page.locator('.school-row').filter({ hasText: '隆田國小' }).click();
  await expect(page.locator('.map-school-focus')).toContainText('隆田國小');
  await expect(page.locator('[data-district="官田區"]')).toHaveAttribute('aria-pressed', 'true');
@@ -24,6 +25,7 @@ try {
  await page.getByRole('button', { name: '回到臺南市清單' }).click();
  await expect(page.locator('.map-school-focus')).toHaveCount(0);
  await expect(map).toHaveAttribute('viewBox', original);
+ await expect(page.locator('.school-row').filter({ hasText: '隆田國小' }).locator('.school-card-media img')).toBeVisible();
  await page.getByRole('button', { name: '台灣地圖', exact: true }).click();
  await page.getByLabel('搜尋國小、地區或地址').fill('隆田國小');
  await page.locator('.school-row').first().click();

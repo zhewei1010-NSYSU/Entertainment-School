@@ -129,3 +129,23 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .map-school-focus button { margin-left: 0; }.map-school-focus .map-add-photo { margin-left: 0; }
   .map-only .school-row-copy strong { font-size: 18px; }.district-grid { column-gap: 12px; }
 }
+
+/* School photo cards retain the notebook palette and show real journal photos only. */
+.school-card-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px 16px; padding: 14px 0; }
+.map-only .school-row.school-card { display: flex; flex-direction: column; align-items: stretch; gap: 0; min-width: 0; width: 100%; padding: 0; overflow: hidden; border: 1px solid #d5d0c7; border-radius: 3px; background: #fffefa; text-align: left; color: #282724; transition: border-color .15s; }
+.map-only .school-row.school-card:hover { border-color: #873e32; background: #fffefa; }
+.school-card-media { display: block; position: relative; aspect-ratio: 16/10; width: 100%; overflow: hidden; background: #efede7; border-bottom: 1px solid #d5d0c7; }
+.school-card-media>img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.school-card-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; height: 100%; color: #7a7165; }
+.school-card-placeholder>svg { color: #9c8b78; margin-bottom: 3px; }
+.school-card-placeholder>span { font-size: 13px; }.school-card-placeholder>small { font-size: 10px; color: #706b63; }
+.school-card-id { position: absolute; left: 10px; top: 10px; padding: 3px 6px; font: 11px Georgia,serif; letter-spacing: .06em; background: #fffefae8; color: #706b63; border: 1px solid #d5d0c7; }
+.map-only .school-card .school-row-copy { display: flex; flex-direction: column; padding: 16px 15px 18px; gap: 7px; min-width: 0; flex: 1; }
+.map-only .school-card .school-row-copy small { font-size: 12px; }
+.map-only .school-card .school-row-copy strong { font-family: 'Songti TC','PMingLiU',serif; font-size: 21px; line-height: 1.5; margin: 0; overflow-wrap: anywhere; }
+.map-only .school-card .school-row-copy em { font-size: 12px; line-height: 1.7; font-style: normal; white-space: normal; overflow-wrap: anywhere; }
+.school-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 15px; padding: 12px 0; border-top: 1px solid #e4dfd6; font-size: 12px; color: #873e32; }
+.school-card-footer>span, .school-card-status { display: inline-flex; gap: 5px; align-items: center; }
+.school-card-status.unvisited { color: #706b63; }
+@media(min-width:761px) and (max-width:1100px) { .school-card-grid { grid-template-columns: 1fr; } }
+@media(max-width:480px) { .school-card-grid { grid-template-columns: 1fr; gap: 18px; }.map-only .school-card .school-row-copy strong { font-size: 22px; }.school-card-media { aspect-ratio: 16/9; } }
